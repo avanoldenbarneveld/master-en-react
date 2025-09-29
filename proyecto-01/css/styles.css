@@ -108,6 +108,7 @@ body {
 }
 
 .peli-item {
+    flex-grow: 1;
     background:  white;
     border-radius: 10px;
     box-shadow:  0px 0 px 6px, ;
