@@ -64,8 +64,7 @@ body {
 
 .nav {
     grid-area: nav;
-    border: 5px solid red;
-    background: lightgray;
+    background: linear-gradient(90deg, #03228f, 10%, #0e73e4 100%);
 }
 
 
@@ -100,7 +99,26 @@ body {
 
 .content {
     grid-area: content;
-    background: linear-gradient(90deg, #03228f, 10%, #0e73e4 100%);
+    background: #f6f7f9;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.peli-item {
+    background:  white;
+    border-radius: 10px;
+    box-shadow:  0px 0 px 6px, ;
+    margin: 20px;
+    margin-left: 20px;
+    margin-right: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left:  25px;
+    padding-right: 25px;
+
 }
 
 .lateral {
