@@ -15,6 +15,10 @@ export const Buscador = ({listadoState, setListadoState}) => {
     // Comprobar si hay un resultado
     if(busqueda.length <= 1 || pelis_encontradas <= 0) {
       pelis_encontradas = JSON.parse(localStorage.getItem("pelis"));
+      setNoEncontrado(true);
+    } else {
+      setNoEncontrado(false);
+     }
     } 
 
     // Actualizar estado del listado principal con lo que he filtrado
@@ -25,6 +29,7 @@ export const Buscador = ({listadoState, setListadoState}) => {
   return (
                 <div className="search">
                     <h3 className="title">Buscador: {busqueda}</h3>
+                    <span className='no-encontrado'>No se ha encontrado ninguna coincidencia</span>
                     <form>
                         <input type="text"
                           id="search_field"
