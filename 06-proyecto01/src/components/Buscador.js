@@ -13,12 +13,14 @@ export const Buscador = ({listadoState, setListadoState}) => {
       return peli.titulo.toLowerCase().includes(busqueda.toLocaleLowerCase())
     });
     // Comprobar si hay un resultado
-    if(busqueda.length <= 1) {
+    if(busqueda.length <= 1 || pelis_encontradas <= 0) {
       pelis_encontradas = JSON.parse(localStorage.getItem("pelis"));
-    }
+    } 
+
     // Actualizar estado del listado principal con lo que he filtrado
-    setListadoState(pelis_encontradas)
-  }
+    setListadoState(pelis_encontradas);
+  
+  } 
 
   return (
                 <div className="search">
