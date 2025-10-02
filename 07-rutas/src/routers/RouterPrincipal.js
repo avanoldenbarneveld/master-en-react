@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link, BrowserRouter} from 'react-router-dom' ;
+import { Routes, Route, NavLink, BrowserRouter} from 'react-router-dom' ;
 import { Inicio } from '../components/Inicio';
 import { Articulos} from '../components/Articulos';
 import { Contacto } from '../components/Contacto';
@@ -11,6 +11,20 @@ export const RouterPrincipal = () => {
 
     <h1> Cabecera </h1>
     <hr />
+
+    <nav>
+        <ul>
+            <li>
+            <NavLink to="/inicio">Inicio</NavLink>
+            </li>
+            <li>
+            <NavLink to="/articulos">Articulos</NavLink>
+            </li>
+            <li>
+            <NavLink to="/contacto">Contacto</NavLink>
+            </li>
+        </ul>
+    </nav>
 
     <section className="contenido-principal">
         {/* Cargar componentes */}
