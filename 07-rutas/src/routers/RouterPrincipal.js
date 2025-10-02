@@ -8,7 +8,13 @@ import { Error } from '../components/Error';
 export const RouterPrincipal = () => {
   return (
     <BrowserRouter>
-    
+
+    <h1> Cabecera </h1>
+    <hr />
+
+    <section className="contenido-principal">
+        {/* Cargar componentes */}
+        {/* Aquí se carga el componente que coincide con el path */}
         <Routes>
             <Route path="/" element={<inicio />} />
             <Route path="/inicio" element={< Inicio/>} />
@@ -16,6 +22,12 @@ export const RouterPrincipal = () => {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="*" element={<Error />} />
         </Routes>
+    </section>
+
+    <hr/>
+    <footer>
+            Este es el pie de página
+    </footer>
 
     </BrowserRouter>
   )
