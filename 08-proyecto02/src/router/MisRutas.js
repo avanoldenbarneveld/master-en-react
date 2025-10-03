@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter, Navlink } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Inicio } from '../components/Inicio';
 import { Portafolio } from '../components/Portafolio';
 import { Servicios } from '../components/Servicios';
@@ -16,7 +16,7 @@ export const MisRutas = () => {
         {/* CONTENIDO CENTRAL */}
         <section className='content'>
           <Routes>
-              <Route path='/' element={<Inicio/>} />
+              <Route path='/' element={<Navigate to="/inicio"/>} />
               <Route path='/inicio' element={<Inicio/>} />
               <Route path='/portafolio' element={<Portafolio/>} />
               <Route path='/servicios' element={<Servicios/>} />
