@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 export const Inicio = () => {
   return (
-    <div>
+    <div className='home'>
 
         <h1>
           Hola, soy Alberto van Oldenbarneveld y soy Desarrollador Web en Pamplona,
-          y ofrezco mis servicios de programación y desarrollo en
+          y ofrezco mis servicios de <strong>programación y desarrollo</strong> en
           todo tipo de proyectos web.
         </h1>
 
