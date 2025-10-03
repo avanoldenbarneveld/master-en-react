@@ -14,17 +14,17 @@ export const MisRutas = () => {
         {/* HEADER Y NAVEGACION */}
         <HeaderNav />
         {/* CONTENIDO CENTRAL */}
+        <section className='content'>
+          <Routes>
+              <Route path='/' element={<Inicio/>} />
+              <Route path='/inicio' element={<Inicio/>} />
+              <Route path='/portafolio' element={<Portafolio/>} />
+              <Route path='/servicios' element={<Servicios/>} />
+              <Route path='/curriculum' element={<Curriculum/>} />
+              <Route path='/contacto' element={<Contacto/>} />
+          </Routes>
+        </section>
 
-        <Routes>
-            <Route path='/' element={<Inicio/>} />
-            <Route path='/inicio' element={<Inicio/>} />
-            <Route path='/portafolio' element={<Portafolio/>} />
-            <Route path='/servicios' element={<Servicios/>} />
-            <Route path='/curriculum' element={<Curriculum/>} />
-            <Route path='/contacto' element={<Contacto/>} />
-        </Routes>
-
-        <hr/>
         {/* Footer */}
         <Footer />
     </BrowserRouter>
