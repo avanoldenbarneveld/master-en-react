@@ -1,10 +1,10 @@
 import './App.css';
-import { MisRutas } from './MisRutas.js'
+import { MisRutas } from './router/MisRutas.js'
 function App() {
   return (
-      <>
+      <div className='layout'>
         <MisRutas/>
-      </>
+      </div>
   );
 }
 

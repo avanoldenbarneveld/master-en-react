@@ -24,6 +24,7 @@ export const MisRutas = () => {
             <Route path='/contacto' element={<Contacto/>} />
         </Routes>
 
+        <hr/>
         {/* Footer */}
         <Footer />
     </BrowserRouter>
