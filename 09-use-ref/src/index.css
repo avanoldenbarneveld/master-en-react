@@ -50,3 +50,14 @@ code {
     transform: rotate(360deg);
   }
 }
+
+.miCaja{
+  border: 3px solid white;
+  padding: 10px;
+  margin: 15px;
+}
+
+.fondoVerde{
+  background-color: green;
+  color: white;
+}
