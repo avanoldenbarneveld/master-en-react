@@ -1,3 +1,4 @@
+import { Ejemplo } from "./components/Ejemplo";
 import { Formulario } from "./components/Formulario";
 
 function App() {
@@ -5,6 +6,8 @@ function App() {
     <div className="App">
       <header className="App-header">
 
+        <Ejemplo />
+        <hr/>
         <Formulario />
       </header>
     </div>
