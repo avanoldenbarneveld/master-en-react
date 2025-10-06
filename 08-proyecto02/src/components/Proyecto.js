@@ -10,7 +10,7 @@ export const Proyecto = () => {
     useEffect(()=>{
         let proyecto = trabajos.filter(trabajo => trabajo.id === params.id);
         setProyecto(proyecto[0])
-    }, []);
+    }, [params.id]);
 
   return (
     <div className='page page-project'>
