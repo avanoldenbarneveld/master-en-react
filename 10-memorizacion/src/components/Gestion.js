@@ -4,6 +4,7 @@ import { Empleados } from './Empleados'
 export const Gestion = () => {
 
   const [ nombre, setNombre ] = useState("");
+  const [pagina, setPagina ] = useState(1)
 
   useEffect(() => {
     console.log("La vista de Gestion se ha renderizado")
@@ -13,7 +14,7 @@ export const Gestion = () => {
     setNombre(e.target.value);
   }
 
-
+  console.log("Vista Gestion Actualizada")
 
   return (
     <div>
@@ -22,7 +23,9 @@ export const Gestion = () => {
 
         <h2>Listado de empleados: </h2>
         <p> Los usuarios son gestionados por {nombre} vienen de jsonplaceholder...</p>
-        <Empleados />
+        <button onClick={() => {setPagina(1) }}>Página 1</button>
+        <button onClick={() => {setPagina(2) }}>Página 2</button>
+        <Empleados pagina={pagina}/>
     </div>
   )
 }
