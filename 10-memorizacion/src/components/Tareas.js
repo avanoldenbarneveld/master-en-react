@@ -10,8 +10,19 @@ export const Tareas = () => {
 
         setTareas(tareas_actualizadas);
 
-        console.log(tareas)
     }
+
+    const borrarTarea = id => {
+
+        // Filtrar las tareas para borrar la que no quiero
+        let nuevas_tareas = tareas.filter((tarea, indice) => indice !== id);
+        console.log(nuevas_tareas)
+
+        // Set State, guardar el nuevo listado de tareas en el estado
+        setTareas(nuevas_tareas);
+
+    }
+
   return (
     <div className='tareas-container'>
         <h1>Mis tareas</h1>
@@ -26,7 +37,13 @@ export const Tareas = () => {
         <ul>
             {
                 tareas.map((tarea, indice) => {
-                    return <li key={indice}>{tarea}</li>
+                    return (
+                        <li key={indice}>
+                            {tarea}
+                            &nbsp;
+                            <button onClick={() => borrarTarea(indice)}>x</button>
+                        </li>
+                            )
                 })
             }
         </ul>
