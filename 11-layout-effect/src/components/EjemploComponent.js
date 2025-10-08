@@ -8,19 +8,16 @@ export const EjemploComponent = () => {
     const boton = useRef();
 
     useLayoutEffect(()=>{
-        console.log("useLayoutEffect: Componente cargado !!!");
-    }, [])
-
-    useEffect(()=>{
         console.log("useEffect: Componente cargado !!!");
         if(caja.current == null) return
 
         const {bottom} = boton.current.getBoundingClientRect();
 
-        console.log(bottom);
+        setTimeout(() => {
 
         caja.current.style.top = `${bottom + 45}px`;
         caja.current.style.left = `${bottom + 45}px`;
+        }, 1000)
 
     }, [mostrar])
 
