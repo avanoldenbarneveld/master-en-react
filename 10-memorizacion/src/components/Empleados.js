@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 export const Empleados = React.memo(
-  ({pagina = 1}) => {
+  ({pagina, mensaje}) => {
       const [empleados, setEmpleados] = useState([]);
 
 
