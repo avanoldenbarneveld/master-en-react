@@ -6,11 +6,12 @@ export const MisJuegos = () => {
     const init = () => {
         return JSON.parse(localStorage.getItem("juegos")) || [];
     }
-    const [juegos, dispatch] = useReducer(JuegoReducer, [{"hola":"hola"}], init)
+
+    const [juegos, dispatch] = useReducer(JuegoReducer, [], init);
 
     useEffect(() => {
         localStorage.setItem("juegos", JSON.stringify(juegos));
-    }, [])
+    }, [juegos]);
 
     const conseguirDatosForm = e => {
         e.preventDefault();
@@ -21,46 +22,44 @@ export const MisJuegos = () => {
             descripcion: e.target.descripcion.value
         };
 
-
-        console.log(juego)
-
         const action = {
             type: "crear",
             payload: juego
         };
 
         dispatch(action);
-        console.log(juegos);
-
     }
 
-  return (
-    <div>
-        <h1>Estos son mis videojuegos</h1>
+    const borramelo = id => {
+        const action = {
+            type: "borrar",
+            payload: id
+        }
+        dispatch(action);
+    }
 
-        <p> Número de videojuegos: {juegos.length}</p>
-        <ul>
-            {
-                juegos.map(juego => {
+    return (
+        <div>
+            <h1> Estos son mis videojuegos </h1>
+
+            <p> Número de videojuegos: {juegos.length}</p>
+            <ul>
+                {juegos.map(juego => (
                     <li key={juego.id}>
                         {juego.titulo}
-
-                        <p>
-                        &nbsp; <button> X</button>
-                        </p>
+                        &nbsp; 
+                        <button onClick={() => borramelo(juego.id)}> X </button>
                     </li>
-                })
-            }
-        </ul>
+                ))}
+            </ul>
 
+            <h3>Agregar Juego</h3>
 
-        <h3>Agregar Juego</h3>
-
-        <form onSubmit={conseguirDatosForm}>
-            <input type="text" name='titulo' placeholder='Titulo' />
-            <textarea name='descripcion' placeholder='Descripción'></textarea>
-            <input type='submit' value='Guardar' />
-        </form>
-    </div>
-  )
+            <form onSubmit={conseguirDatosForm}>
+                <input type="text" name='titulo' placeholder='Titulo' />
+                <textarea name='descripcion' placeholder='Descripción'></textarea>
+                <input type='submit' value='Guardar' />
+            </form>
+        </div>
+    )
 }
