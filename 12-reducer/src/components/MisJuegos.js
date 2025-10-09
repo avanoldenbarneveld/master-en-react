@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
+import { JuegoReducer } from '../reducers/JuegoReducer';
 
 export const MisJuegos = () => {
+
+    const init = () => {
+        return JSON.parse(localStorage.getItem("juegos")) || [];
+    }
+    const [juegos, dispatch] = useReducer(JuegoReducer, [{"hola":"hola"}], init)
+
+    useEffect(() => {
+        localStorage.setItem("juegos", JSON.stringify(juegos));
+    }, [])
 
     const conseguirDatosForm = e => {
         e.preventDefault();
