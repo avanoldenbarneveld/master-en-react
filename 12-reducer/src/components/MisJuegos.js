@@ -23,17 +23,34 @@ export const MisJuegos = () => {
 
 
         console.log(juego)
+
+        const action = {
+            type: "crear",
+            payload: juego
+        };
+
+        dispatch(action);
+        console.log(juegos);
+
     }
 
   return (
     <div>
         <h1>Estos son mis videojuegos</h1>
 
-        <p> Número de videojuegos: 15</p>
+        <p> Número de videojuegos: {juegos.length}</p>
         <ul>
-            <li>GTA</li>
-            <li>Mortal Kombat</li>
-            <li>Crash Bandicoot</li>
+            {
+                juegos.map(juego => {
+                    <li key={juego.id}>
+                        {juego.titulo}
+
+                        <p>
+                        &nbsp; <button> X</button>
+                        </p>
+                    </li>
+                })
+            }
         </ul>
 
 
