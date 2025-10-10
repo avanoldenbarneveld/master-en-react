@@ -3,15 +3,15 @@ import { PruebaContext } from './context/PruebaContexto'
 
 export const Inicio = () => {
 
-  const compartida = useContext(PruebaContext)
+  const {usuario, setUsuario} = useContext(PruebaContext)
 
-  console.log(compartida)
 
   return (
     <div>
       <h1>Inicio</h1>
       <p>Página de inicio</p>
-      <p>Valor compartido: <strong>{compartida.titulo}</strong></p>
+      <p>Nombre: {usuario.nombre} {usuario.web}</p>
+      {/* p>Valor compartido: <strong>{compartida.titulo}</strong></p> */}
     </div>
   )
 }
