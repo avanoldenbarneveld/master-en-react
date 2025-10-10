@@ -10,6 +10,8 @@ function App() {
   useEffect(() => {
     // La primera vez que se carga el componente
     let usuario_local = JSON.parse(localStorage.getItem('usuario'));
+
+    setUsuario(usuario_local);
   }, []);
 
     useEffect(() => {
