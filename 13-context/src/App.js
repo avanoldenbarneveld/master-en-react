@@ -1,13 +1,14 @@
 import './App.css';
+import { PruebaContext } from './components/context/PruebaContexto';
 import { AppRouter } from './routing/AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Aprendiendo el useContext</h1>
+      <PruebaContext.Provider value={curso}>
         <AppRouter />
-      </header>
+      </PruebaContext.Provider>
+
     </div>
   );
 }
