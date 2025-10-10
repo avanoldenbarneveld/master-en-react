@@ -8,9 +8,38 @@ import { Login } from '../components/Login';
 
 export const AppRouter = () => {
   return (
-    <BrowserRouter>
-    {/* MENU NAVEGACION */}
 
+
+    <BrowserRouter>
+
+    <header className='header'>
+    {/* MENU NAVEGACION */}
+      <nav>
+        <div className='logo'>
+          <h2>Aprendiendo React Context</h2>
+        </div>
+        <ul>
+          <li>
+            <NavLink to="/"> Inicio </NavLink>
+          </li>
+          <li>
+            <NavLink to="/articulos"> Articulos </NavLink>
+          </li>
+          <li>
+            <NavLink to="/acerca-de"> Acerca de </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contacto"> Contacto </NavLink>
+          </li>
+          <li>
+            <NavLink to="/login"> Identificate</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+  <section className='content'>
     {/* CONFIGURAR RUTAS */} 
 
     <Routes>
@@ -27,6 +56,7 @@ export const AppRouter = () => {
             </div>
         )} />
     </Routes>
+  </section>
 
     </BrowserRouter>
   )
