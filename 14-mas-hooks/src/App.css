@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.mi-formulario input,
+.mi-formulario textarea {
+  display: block;
+  width: 80%;
+  max-width: 300px;
+  margin: 15px auto;
+  padding: 10px;
+}
+
+.mi-formulario input[type='submit']{
+  width: 40%;
+  cursor:pointer;
+  margin-bottom: 100px;
+  background-color: green;
+  color: white;
+  border: 0px;
+  border-radius: 3px;
+}
+
+.mi-formulario input[type='submit']:hover{
+  background-color: rgb(6, 150, 6);
+}

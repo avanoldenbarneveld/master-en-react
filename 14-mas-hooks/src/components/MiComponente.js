@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 export const MiComponente = () => {
 
-const id = new Date().getTime();
+const id = useId();
+const segundo_id = useId();
+
+console.log(id);
+console.log(segundo_id);
+
 
   return (
     <div>
