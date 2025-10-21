@@ -2,11 +2,25 @@ import React, { useState } from 'react'
 
 export const MiFormulario = () => {
 
-    const [formulario, setFormulario] = useState({})
+    const [formulario, setFormulario] = useState({});
+
+    const serializarFormulario = (formulario) => {
+
+        const formData = new formData(formulario);
+
+        const objetoCompleto = {};
+
+        for(let [name, value] of FormData){
+            objetoCompleto[name] = value;
+        }
+
+        return objetoCompleto
+    }
 
     const enviado = (e) => {
         e.preventDefault();
 
+        /* 
         let curso = {
             titulo: e.target.titulo.value,
             anio: e.target.anio.value,
@@ -14,6 +28,10 @@ export const MiFormulario = () => {
             autor: e.target.autor.value,
             email: e.target.email.value
         };
+        
+        */
+
+        let curso = serializarFormulario(e.target)
 
         setFormulario(curso);
     }
