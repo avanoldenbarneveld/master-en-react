@@ -1,59 +1,16 @@
 import React, { useState } from 'react'
+import { useForm } from '../hooks/useForm'
 
 export const MiFormulario = () => {
 
-    const [formulario, setFormulario] = useState({});
-
-    const serializarFormulario = (formulario) => {
-
-        const formData = new formData(formulario);
-
-        const objetoCompleto = {};
-
-        for(let [name, value] of FormData){
-            objetoCompleto[name] = value;
-        }
-
-        return objetoCompleto
-    }
-
-    const enviado = (e) => {
-        e.preventDefault();
-
-        /* 
-        let curso = {
-            titulo: e.target.titulo.value,
-            anio: e.target.anio.value,
-            descripcion: e.target.descripcion.value,
-            autor: e.target.autor.value,
-            email: e.target.email.value
-        };
-        
-        */
-
-        let curso = serializarFormulario(e.target)
-
-        setFormulario(curso);
-
-    }
-
-
-        const cambiado = ({target}) => {
-            const {name, value} = target;
-
-            setFormulario({
-                ...formulario,
-                [name]: value
-            });
-
-    }
+    const {formulario, enviado, cambiado} = useForm({});
 
   return (
     <div>
         <h1>Formulario</h1>
         <p>Formulario para guardar un curso</p>
-        <p>Curso guardado:</p>
-        <pre>{JSON.stringify(formulario)}</pre>
+        <p>Curso guardado: {formulario.titulo}</p>
+        <pre className='codigo'>{JSON.stringify(formulario)}</pre>
 
         <form onSubmit={enviado} className='mi-formulario'>
             <input type='text' name='titulo' onChange={cambiado} placeholder='Título:' />
