@@ -34,6 +34,18 @@ export const MiFormulario = () => {
         let curso = serializarFormulario(e.target)
 
         setFormulario(curso);
+
+    }
+
+
+        const cambiado = ({target}) => {
+            const {name, value} = target;
+
+            setFormulario({
+                ...formulario,
+                [name]: value
+            });
+
     }
 
   return (
@@ -44,11 +56,11 @@ export const MiFormulario = () => {
         <pre>{JSON.stringify(formulario)}</pre>
 
         <form onSubmit={enviado} className='mi-formulario'>
-            <input type='text' name='titulo' placeholder='Título:' />
-            <input type='number' name='anio' placeholder='Año publicacion:'/>
-            <textarea name='descripcion' placeholder='Descripción:'/>
-            <input type='text' name='autor' placeholder='Autor:' />
-            <input type='email' name='email' placeholder='Correo de contacto:' />
+            <input type='text' name='titulo' onChange={cambiado} placeholder='Título:' />
+            <input type='number' name='anio' onChange={cambiado} placeholder='Año publicacion:'/>
+            <textarea name='descripcion' onChange={cambiado} placeholder='Descripción:'/>
+            <input type='text' name='autor' onChange={cambiado} placeholder='Autor:' />
+            <input type='email' name='email' onChange={cambiado} placeholder='Correo de contacto:' />
 
             <input type='submit' value='Enviar' />
 
