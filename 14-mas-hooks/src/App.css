@@ -63,5 +63,10 @@
 
 .codigo{
   font-size: 12px;
+}
 
+.enviado {
+  background-color: green;
+  color: white;
+  padding: 5px;
 }

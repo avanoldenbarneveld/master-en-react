@@ -3,6 +3,7 @@ import './App.css';
 import { MiComponente } from './components/MiComponente';
 import { PruebasCustom } from './components/PruebasCustom';
 import { MiFormulario } from './components/MiFormulario';
+import { MiUsuario } from './components/MiUsuario';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-          <MiFormulario />
+          <MiUsuario />
       </header>
     </div>
   );
