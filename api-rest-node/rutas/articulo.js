@@ -1,15 +1,13 @@
-const express = require('express');
-const router =express.Router();
+const express = require("express");
+const router = express.Router();
 
-const ArticuloControlador = require('../controladores/articulo.js');
-
+const ArticuloControlador = require("../controladores/articulo.js");
 
 // Rutas de pruebas
-router.get('/ruta-de-prueba', ArticuloControlador.prueba)
-router.get('/curso', ArticuloControlador.curso)
+router.get("/ruta-de-prueba", ArticuloControlador.prueba);
+router.get("/curso", ArticuloControlador.curso);
 
-
-
-
+// Ruta util
+router.post("/crear", ArticuloControlador.crear);
 
 module.exports = router;
