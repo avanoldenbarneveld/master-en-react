@@ -6,7 +6,7 @@ const ArticuloControlador = require('../controladores/articulo.js');
 
 // Rutas de pruebas
 router.get('/ruta-de-prueba', ArticuloControlador.prueba)
-router.get('/curso', ArticuloControlador.prueba)
+router.get('/curso', ArticuloControlador.curso)
 
 
 
