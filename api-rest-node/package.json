@@ -1,0 +1,12 @@
+{
+  "name": "api-rest-node",
+  "version": "1.0.0",
+  "description": "API REST con Node JS",
+  "license": "MIT",
+  "author": "Alberto van Oldenbarneveld",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
