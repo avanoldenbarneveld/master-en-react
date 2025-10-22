@@ -19,6 +19,13 @@ app.use(cors());
 app.use(express.json());
 
 // RUTAS
+const rutas_articulo = require('./rutas/articulo.js');
+
+// Cargo las rutas
+app.use('/api', rutas_articulo)
+
+
+// Rutas prueba hardcodeadas
 app.get("/probando", (req, res) => {
   console.log("Se ha ejecutado el endpoint probando");
 
@@ -39,7 +46,7 @@ app.get("/probando", (req, res) => {
 app.get("/", (req, res) => {
   return res
     .status(200)
-    .send('<h1> Empezando a crear una api rest con node </h1>');
+    .send("<h1> Empezando a crear una api rest con node </h1>");
 });
 
 // Crear servidor y escuchar peticiones http
