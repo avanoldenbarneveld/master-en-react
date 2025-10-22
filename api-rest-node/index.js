@@ -1,16 +1,16 @@
-const { conexion } = require('./basedatos/conexion');
-const express = require('express')
-const cors =require('cors')
+const { conexion } = require("./basedatos/conexion");
+const express = require("express");
+const cors = require("cors");
 
 // Inicializar app
-console.log('App de node arrancada')
+console.log("App de node arrancada");
 
 // Conectar a la base de datos
-conexion()
+conexion();
 
 // Crear servidor Node
 const app = express();
-const puerto = 3900
+const puerto = 3900;
 
 // Configurar cors
 app.use(cors());
@@ -19,8 +19,30 @@ app.use(cors());
 app.use(express.json());
 
 // RUTAS
+app.get("/probando", (req, res) => {
+  console.log("Se ha ejecutado el endpoint probando");
+
+  return res.status(200).json([
+    {
+      curso: "Master en React",
+      autor: "Alberto van Oldenbarneveld",
+      url: "albertovan.com",
+    },
+    {
+      curso: "Master en React",
+      autor: "Alberto van Oldenbarneveld",
+      url: "albertovan.com",
+    },
+  ]);
+});
+
+app.get("/", (req, res) => {
+  return res
+    .status(200)
+    .send('<h1> Empezando a crear una api rest con node </h1>');
+});
 
 // Crear servidor y escuchar peticiones http
 app.listen(puerto, () => {
-    console.log('Servidor corriendo en el puerto '+puerto)
-})
+  console.log("Servidor corriendo en el puerto " + puerto);
+});
