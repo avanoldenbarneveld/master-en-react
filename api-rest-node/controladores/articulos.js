@@ -72,17 +72,17 @@ const crear = async (req, res) => {
 
 // Listar artículos
 const listar = async (req, res) => {
-
-  let consulta = Articulo.find({});
-
-  consulta.limit(3);
-
   try {
+    // Crear consulta base (ordenar por fecha descendente)
+    let consulta = Articulo.find({}).sort({ fecha: -1 });
 
+    // Si hay parámetro "ultimos", limitar a 3 resultados
+    if (req.params.ultimos) {
+      consulta = consulta.limit(3);
+    }
 
-    const articulos = await Articulo.find({}).sort({ fecha: -1 }).exec();
-
-    consulta.limit(3);
+    // Ejecutar la consulta
+    const articulos = await consulta.exec();
 
     if (!articulos || articulos.length === 0) {
       return res.status(404).json({
@@ -94,7 +94,7 @@ const listar = async (req, res) => {
     return res.status(200).json({
       status: "success",
       contador: articulos.length,
-      articulos
+      articulos,
     });
   } catch (error) {
     console.error("Error en listar:", error);
@@ -106,9 +106,37 @@ const listar = async (req, res) => {
   }
 };
 
+// Obtener un artículo por ID
+const uno = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const articulo = await Articulo.findById(id);
+
+    if (!articulo) {
+      return res.status(404).json({
+        status: "error",
+        mensaje: "No se ha encontrado el artículo",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      articulo,
+    });
+  } catch (error) {
+    console.error("Error al obtener artículo:", error);
+    return res.status(500).json({
+      status: "error",
+      mensaje: "Error al obtener el artículo",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   prueba,
   curso,
   crear,
   listar,
+  uno,
 };
