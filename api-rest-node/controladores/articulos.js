@@ -1,5 +1,6 @@
 const validator = require("validator");
 const Articulo = require("../modelos/Articulo");
+const mongoose = require("mongoose");
 
 // Acción de prueba
 const prueba = (req, res) => {
@@ -76,8 +77,8 @@ const listar = async (req, res) => {
     // Crear consulta base (ordenar por fecha descendente)
     let consulta = Articulo.find({}).sort({ fecha: -1 });
 
-    // Si hay parámetro "ultimos", limitar a 3 resultados
-    if (req.params.ultimos) {
+    // Si hay query param "ultimos", limitar a 3 resultados
+    if (req.query.ultimos) {
       consulta = consulta.limit(3);
     }
 
@@ -110,6 +111,15 @@ const listar = async (req, res) => {
 const uno = async (req, res) => {
   try {
     const id = req.params.id;
+
+    // Validar ObjectId antes de consultar
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        status: "error",
+        mensaje: "El ID proporcionado no es válido",
+      });
+    }
+
     const articulo = await Articulo.findById(id);
 
     if (!articulo) {
@@ -133,10 +143,48 @@ const uno = async (req, res) => {
   }
 };
 
+// Borrar un artículo
+const borrar = async (req, res) => {
+  try {
+    const articulo_id = req.params.id;
+
+    // Validar ID
+    if (!mongoose.Types.ObjectId.isValid(articulo_id)) {
+      return res.status(400).json({
+        status: "error",
+        mensaje: "El ID proporcionado no es válido",
+      });
+    }
+
+    const articuloBorrado = await Articulo.findOneAndDelete({ _id: articulo_id });
+
+    if (!articuloBorrado) {
+      return res.status(404).json({
+        status: "error",
+        mensaje: "No se ha encontrado el artículo para borrar",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      mensaje: "Artículo borrado correctamente",
+      articulo: articuloBorrado,
+    });
+  } catch (error) {
+    console.error("Error al borrar artículo:", error);
+    return res.status(500).json({
+      status: "error",
+      mensaje: "Error al borrar el artículo",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   prueba,
   curso,
   crear,
   listar,
   uno,
+  borrar,
 };
