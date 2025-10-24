@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const ArticuloControlador = require("../controladores/articulo.js");
+const ArticuloControlador = require("../controladores/articulos.js");
 
 // Rutas de pruebas
 router.get("/ruta-de-prueba", ArticuloControlador.prueba);
