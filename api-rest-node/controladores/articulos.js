@@ -32,14 +32,20 @@ const crear = async (req, res) => {
     const parametros = req.body || {};
 
     // Validar campos
-    if (typeof parametros.titulo !== "string" || typeof parametros.contenido !== "string") {
+    if (
+      typeof parametros.titulo !== "string" ||
+      typeof parametros.contenido !== "string"
+    ) {
       return res.status(400).json({
         status: "error",
         mensaje: "Los campos deben ser texto válido",
       });
     }
 
-    if (validator.isEmpty(parametros.titulo) || validator.isEmpty(parametros.contenido)) {
+    if (
+      validator.isEmpty(parametros.titulo) ||
+      validator.isEmpty(parametros.contenido)
+    ) {
       return res.status(400).json({
         status: "error",
         mensaje: "Faltan datos por enviar",
@@ -66,8 +72,17 @@ const crear = async (req, res) => {
 
 // Listar artículos
 const listar = async (req, res) => {
+
+  let consulta = Articulo.find({});
+
+  consulta.limit(3);
+
   try {
-    const articulos = await Articulo.find({}).exec();
+
+
+    const articulos = await Articulo.find({}).sort({ fecha: -1 }).exec();
+
+    consulta.limit(3);
 
     if (!articulos || articulos.length === 0) {
       return res.status(404).json({
@@ -78,7 +93,8 @@ const listar = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      articulos,
+      contador: articulos.length,
+      articulos
     });
   } catch (error) {
     console.error("Error en listar:", error);
