@@ -74,15 +74,12 @@ const crear = async (req, res) => {
 // Listar artículos
 const listar = async (req, res) => {
   try {
-    // Crear consulta base (ordenar por fecha descendente)
     let consulta = Articulo.find({}).sort({ fecha: -1 });
 
-    // Si hay query param "ultimos", limitar a 3 resultados
     if (req.query.ultimos) {
       consulta = consulta.limit(3);
     }
 
-    // Ejecutar la consulta
     const articulos = await consulta.exec();
 
     if (!articulos || articulos.length === 0) {
@@ -112,7 +109,6 @@ const uno = async (req, res) => {
   try {
     const id = req.params.id;
 
-    // Validar ObjectId antes de consultar
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         status: "error",
@@ -146,17 +142,16 @@ const uno = async (req, res) => {
 // Borrar un artículo
 const borrar = async (req, res) => {
   try {
-    const articulo_id = req.params.id;
+    const articuloId = req.params.id;
 
-    // Validar ID
-    if (!mongoose.Types.ObjectId.isValid(articulo_id)) {
+    if (!mongoose.Types.ObjectId.isValid(articuloId)) {
       return res.status(400).json({
         status: "error",
         mensaje: "El ID proporcionado no es válido",
       });
     }
 
-    const articuloBorrado = await Articulo.findOneAndDelete({ _id: articulo_id });
+    const articuloBorrado = await Articulo.findOneAndDelete({ _id: articuloId });
 
     if (!articuloBorrado) {
       return res.status(404).json({
@@ -180,6 +175,62 @@ const borrar = async (req, res) => {
   }
 };
 
+// Editar un artículo
+const editar = async (req, res) => {
+  try {
+    const articuloId = req.params.id;
+    const parametros = req.body || {};
+
+    // Validar ID
+    if (!mongoose.Types.ObjectId.isValid(articuloId)) {
+      return res.status(400).json({
+        status: "error",
+        mensaje: "El ID proporcionado no es válido",
+      });
+    }
+
+    // Validar datos
+    if (
+      typeof parametros.titulo !== "string" ||
+      typeof parametros.contenido !== "string" ||
+      validator.isEmpty(parametros.titulo) ||
+      validator.isEmpty(parametros.contenido)
+    ) {
+      return res.status(400).json({
+        status: "error",
+        mensaje: "Datos inválidos o incompletos para actualizar el artículo",
+      });
+    }
+
+    // Buscar y actualizar
+    const articuloActualizado = await Articulo.findOneAndUpdate(
+      { _id: articuloId },
+      parametros,
+      { new: true } // devuelve el artículo actualizado
+    );
+
+    if (!articuloActualizado) {
+      return res.status(404).json({
+        status: "error",
+        mensaje: "No se ha encontrado el artículo para actualizar",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      mensaje: "Artículo actualizado correctamente",
+      articulo: articuloActualizado,
+    });
+  } catch (error) {
+    console.error("Error al actualizar artículo:", error);
+    return res.status(500).json({
+      status: "error",
+      mensaje: "Error al actualizar el artículo",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   prueba,
   curso,
@@ -187,4 +238,5 @@ module.exports = {
   listar,
   uno,
   borrar,
+  editar,
 };
