@@ -11,14 +11,14 @@ export const Sidebar = () => {
         </form>
       </div>
 
-      <div className="add">
+      {/* <div className="add">
         <h3 className="title">Añadir pelicula</h3>
         <form>
           <input type="text" placeholder="Titulo" />
           <textarea placeholder="Descripción" />
           <input type="submit" value="Guardar" />
         </form>
-      </div>
+      </div> */}
     </aside>
   )
 }

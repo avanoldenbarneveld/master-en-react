@@ -20,6 +20,8 @@ export const Rutas = () => {
             <Route path='/' element={<Inicio />} />
             <Route path='/inicio' element={<Inicio />} />
             <Route path='/articulos' element={<Articulo />} />
+            <Route path='/crear-articulos' element={<Articulo />} />
+
 
         </Routes>
       </section>
