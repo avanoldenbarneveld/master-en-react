@@ -6,6 +6,7 @@ import { Header } from "../components/layout/Header";
 import { Nav } from "../components/layout/Nav";
 import { Sidebar } from "../components/layout/Sidebar";
 import { Footer } from "../components/layout/Footer";
+import { Articulos } from "../components/pages/Articulos";
 
 export const Rutas = () => {
   return(
@@ -19,7 +20,7 @@ export const Rutas = () => {
         <Routes>
             <Route path='/' element={<Inicio />} />
             <Route path='/inicio' element={<Inicio />} />
-            <Route path='/articulos' element={<Articulo />} />
+            <Route path='/articulos' element={<Articulos />} />
             <Route path='/crear-articulos' element={<Articulo />} />
 
 

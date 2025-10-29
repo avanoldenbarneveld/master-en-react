@@ -6,7 +6,7 @@ import { Rutas } from './routing/rutas'
 function App() {
 
   return (
-      <div className='App'>
+      <div className='layout'>
 
         <Rutas />
 

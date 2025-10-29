@@ -2,6 +2,21 @@ import React from 'react'
 
 export const Articulos = () => {
   return (
-    <div>Articulos</div>
+    <>
+      <article className="articulo-item">
+        <div className='mascara'>
+          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/330px-Unofficial_JavaScript_logo_2.svg.png' />
+        </div>
+
+        <div className='datos'>
+          <h3 className="title">Desarollo web</h3>
+          <p className="description">victorroblesweb.es</p>
+
+          <button className="edit">Editar</button>
+          <button className="delete">Borrar</button>
+        </div>
+      </article>
+
+    </>
   )
 }
