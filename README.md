@@ -42,6 +42,8 @@ Each folder corresponds to a section of the course or a standalone project:
 * **13-context** → Context API, global state, and login system
 * **14-mas-hooks** → Custom hooks and form management (`useForm`, `useMayus`)
 
+* **15-proyecto03** → Blog personal en React con Vite, CRUD de artículos, búsqueda, edición y consumo de API propia (Node.js/Express). Estructura modular con hooks personalizados (`useAjax`, `useForm`), rutas protegidas y layout completo (Header, Nav, Sidebar, Footer).
+
 Each project includes its own `README.md` with specific details, dependencies, and lessons learned.
 
 ---
