@@ -1,55 +1,49 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { Global } from '../../helpers/global'
+import React, { useState, useEffect } from 'react';
+import { Global } from '../../helpers/global';
+import { Ajax } from '../../helpers/Ajax';
 
 export const Articulos = () => {
-
-  const [articulos, setArticulos] = useState([])
+  const [articulos, setArticulos] = useState([]);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
+    const conseguirArticulos = async () => {
+      const { datos } = await Ajax(Global.url + 'articulos', 'GET');
+
+      if (datos.status === 'success') {
+        setArticulos(datos.articulos);
+      }
+
+      setCargando(false);
+    };
+
     conseguirArticulos();
-  }, [])
+  }, []);
 
-  const conseguirArticulos = async () => {
-    const url = Global.url+'articulos';
-    let peticion = await fetch(url, {
-      method: 'GET'
-    });
-    let datos = await peticion.json();
-
-    if (datos.status === 'success') {
-      setArticulos(datos.articulos)
-    }
-  }
+  if (cargando) return <h2>Cargando artículos...</h2>;
 
   return (
     <>
-      {
-        articulos.length >= 1 ?
-          (
-            articulos.map(articulo => {
-              return (
-                <article key={articulo._id} className="articulo-item">
-                  <div className='mascara'>
-                    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/330px-Unofficial_JavaScript_logo_2.svg.png' />
-                  </div>
-                  <div className='datos'>
-                    <h3 className="title">{articulo.titulo}</h3>
-                    <p className="description">{articulo.contenido}</p>
-
-                    <button className="edit">Editar</button>
-                    <button className="delete">Borrar</button>
-                  </div>
-                </article>
-              );
-            })
-
-      )
-      :
-      (
-      <h1> No hay artículos</h1>
-      )
-}
+      {articulos.length >= 1 ? (
+        articulos.map((articulo) => (
+          <article key={articulo._id} className="articulo-item">
+            <div className="mascara">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/330px-Unofficial_JavaScript_logo_2.svg.png"
+                alt={articulo.titulo}
+              />
+            </div>
+            <div className="datos">
+              <h3 className="title">{articulo.titulo}</h3>
+              <p className="description">{articulo.contenido}</p>
+              <button className="edit">Editar</button>
+              <button className="delete">Borrar</button>
+            </div>
+          </article>
+        ))
+      ) : (
+        <h1>No hay artículos</h1>
+      )}
     </>
-  )
-}
+  );
+};
