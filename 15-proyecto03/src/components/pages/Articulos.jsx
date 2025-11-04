@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Global } from '../../helpers/global';
-import { Ajax } from '../../helpers/Ajax';
+import { Peticion } from '../../helpers/peticion';
 
 export const Articulos = () => {
   const [articulos, setArticulos] = useState([]);
@@ -8,7 +8,7 @@ export const Articulos = () => {
 
   useEffect(() => {
     const conseguirArticulos = async () => {
-      const { datos } = await Ajax(Global.url + 'articulos', 'GET');
+      const { datos } = await Peticion(Global.url + 'articulos', 'GET');
 
       if (datos.status === 'success') {
         setArticulos(datos.articulos);
