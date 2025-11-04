@@ -1,5 +1,5 @@
 // Helper genérico para peticiones AJAX (GET, POST, PUT, DELETE)
-export const Ajax = async (url, metodo = 'GET', datosGuardar = null) => {
+export const Peticion = async (url, metodo = 'GET', datosGuardar = null) => {
   let datos = null;
   let cargando = true;
 
